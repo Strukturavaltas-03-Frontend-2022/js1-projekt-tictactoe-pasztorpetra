@@ -6,21 +6,37 @@ let cols = 3;
 let rows = 3;
 let mark = 'X';
 
-// initState elnevezésű függvény kifejtése
+// initState: játéktér feltöltése üres mezőkkel
 
 const initState = () => {
     
-}
+};
 
-// changeMatrixValue függvény
+// changeMatrixValue: egyes cellák azonosítása
 
 const changeMatrixValue = (element) => {
     const row = parseInt(element.dataset.row, 10);
     const cell = parseInt(element.dataset.cell, 10);
     matrix[row][cell] = element.textContent;
-}
+};
 
-// deleteSigns elnevezésű függvény kifejtése
+// deleteSigns: kiválasztja az összes cellát és mindegyikben elhelyez egy stringe-t
+
+const deleteSigns = () => {
+    let elements = document.querySelectorAll(".cell");
+    elements.forEach(item => {item.innerHTML =('')});
+};
+
+// increaseCounter: megtett lépések számát növeli eggyel
+
+const increaseCounter = () => stepCount ++;
+
+// modifyCell: beállítja az elem tartalmának a használt jelet,
+// majd kattintásra (esemény) eltávolítja a handleClick függvényt.
+
+const modifyCell = (element) => {
+    
+}
 
 const newGame = () => {
     document.querySelector(".reset").addEventListener("click", () => {
