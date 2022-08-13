@@ -20,7 +20,7 @@ const changeMatrixValue = (element) => {
     matrix[row][cell] = element.textContent;
 };
 
-// deleteSigns: kiválasztja az összes cellát és mindegyikben elhelyez egy stringe-t
+// deleteSigns: kiválasztja az összes cellát és mindegyikben elhelyez egy string-et
 
 const deleteSigns = () => {
     let elements = document.querySelectorAll(".cell");
@@ -36,15 +36,52 @@ const increaseCounter = () => stepCount ++;
 
 const modifyCell = (element) => {
     
+};
+
+// setMark: a jelre beállítja a következő lépésnél használt jelet úgy, 
+// hogy ha az X-et használtuk éppen, akkor 0 és fordítva
+
+const setMark = () => {
+    
+};
+
+// handleClick: függvények meghívása
+
+const handleClick = (event) => {
+        increaseCounter();
+        modifyCell(event.target);
+        setMark();
+        changeMatrixValue(event.target);
+        checkWinner();
+};
+
+// addClickListener: cellák kiválasztása és kattintásra handClick függvény 
+// hozzáadása mindegyikhez
+
+const addClickListener = () => {
+    document.querySelectorAll(".cell").addEventListener("click", () => {
+        handleClick ();
+    })
 }
+
+// removeAllClickListeners: kiválasztja a cellákat, 
+// és kattintásra (esemény) mindegyikről eltávolítja a handleClick függvényt
+
+const removeAllClickListeners = () => {
+    document.querySelectorAll('.cell').addClickListener("click", () => {
+        removeAllClickListeners.remove(handleClick);
+    })
+}
+
+// newGame: gomb kiválasztása és kattintásra függvények meghívása
 
 const newGame = () => {
     document.querySelector(".reset").addEventListener("click", () => {
-        initState(),
-        addClickListener(),
-        deleteSigns(),
-        setMessage('Playing...'), 
-        setMark()
+        initState();
+        addClickListener();
+        deleteSigns();
+        setMessage('Playing...');
+        setMark();
     });
     startGame();
 }
