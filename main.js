@@ -11,7 +11,7 @@ let mark = 'X';
 const initState = () => {
     for(i = 0; i<rows; i+=1) {
       matrix[i] = "";
-      for(i=0; i<cols; i+=1) {
+      for(j=0; j<cols; j+=1) {
         matrix[i][j] = "";
       }}
     };    
@@ -86,7 +86,14 @@ const removeAllClickListeners = () => {
 // Ha a sor minden egyes eleme 0 vagy X, akkor a 0 vagy az X győzött
 
 const checkValues = (array) => array.map(row => {
-    if (row.every())
+    if (row.every(item => item == 'X')) {
+        return true
+    } else if(row.every(item => item == '0')) {
+        return true
+    }
+    else {
+        return false
+    }
 })
     .indexOf(true) !== -1;
 
