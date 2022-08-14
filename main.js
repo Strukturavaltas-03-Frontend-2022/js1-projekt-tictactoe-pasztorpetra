@@ -5,7 +5,7 @@ let stepCount = 0;
 const cols = 3;
 const rows = 3;
 let mark = "X";
-const elements = array.from(document.querySelectorAll(".cell"));
+const elements = Array.from(document.querySelectorAll(".cell"));
 
 // initState: játéktér feltöltése üres mezőkkel
 
@@ -76,10 +76,7 @@ const addClickListener = () => {
 // és kattintásra (esemény) mindegyikről eltávolítja a handleClick függvényt
 
 const removeAllClickListeners = () => {
-  let elements = document.querySelectorAll(".cell");
-  elements.forEach((item) =>
-    item.removeAllClickListeners("click", handleClick)
-  );
+  elements.forEach((cell) => cell.removeEventListener("click", handleClick));
 };
 
 // checkValues: végigmegy a kapott tömb sorain,
