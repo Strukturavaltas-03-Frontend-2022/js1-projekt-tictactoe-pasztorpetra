@@ -27,7 +27,8 @@ const changeMatrixValue = (element) => {
 // deleteSigns: kiválasztja az összes cellát és mindegyikben elhelyez egy string-et
 
 const deleteSigns = () => {
-    document.querySelectorAll(".cell").forEach(item => (item.innerHTML =""));
+    let elements = document.querySelectorAll(".cell");
+    elements.forEach(item => (item.innerHTML =""));
 };
 
 // increaseCounter: megtett lépések számát növeli eggyel
@@ -39,7 +40,7 @@ const increaseCounter = () => stepCount ++;
 
 const modifyCell = (element) => {
     element.innerHTML= mark;
-    element.addEventListener("click", remove(handleClick()));
+    element.removeEventListener("click", handleClick);
 };
 
 // setMark: a jelre beállítja a következő lépésnél használt jelet úgy, 
@@ -67,8 +68,8 @@ const handleClick = (event) => {
 // hozzáadása mindegyikhez
 
 const addClickListener = () => {
-    document.querySelectorAll(".cell")
-    .forEach(item => item.addEventListener("click", handleClick));
+    let elements = document.querySelectorAll(".cell");
+    elements.forEach(item => item.addEventListener("click", handleClick));
     };
 
 
@@ -76,8 +77,8 @@ const addClickListener = () => {
 // és kattintásra (esemény) mindegyikről eltávolítja a handleClick függvényt
 
 const removeAllClickListeners = () => {
-    document.querySelectorAll('.cell')
-    .forEach(item => item.removeAllClickListeners("click", handleClick));
+    let elements = document.querySelectorAll('.cell');
+    elements.forEach(item => item.removeAllClickListeners("click", handleClick));
 }
 
 // checkValues: végigmegy a kapott tömb sorain,
@@ -109,9 +110,17 @@ const checkValues = (array) => array.map(row => {
     //Ez azért fontos, mert így tudhatjuk meg, 
     //hogy lesz-e három azonos jel egymás mellett/alatt/átlósan.
 
-// checkWinner: 
+// checkWinner: kiírja a konzolra a checkColumnValues()t és a checkDiagonalValues()-t,
+// majd meghívja az endGame()-et, HA a checkValues(matrix) 
+// vagy a checkColumnValues() vagy a checkDiagonalValues() igaz.
 
-const checkWinner = () => {},
+const checkWinner = () => {
+    console.log(checkColumnValues());
+    console.log(checkDiagonalValues());
+    if(checkValues(matrix) || checkColumnValues() || checkDiagonalValues()) {
+        endGame();
+    }
+};
 
 //setMessage: kiválasztja a message osztályú elemet, és az üzenetet állítja be a div tartalmának
 
