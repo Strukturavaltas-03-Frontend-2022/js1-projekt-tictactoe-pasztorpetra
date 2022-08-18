@@ -10,10 +10,10 @@ const elements = Array.from(document.querySelectorAll(".cell"));
 // initState: játéktér feltöltése üres mezőkkel
 
 const initState = () => {
-  for (i = 0; i < rows; i += 1) {
-    matrix[i] = "";
-    for (j = 0; j < cols; j += 1) {
-      matrix[i][j] = "";
+  for (let i = 0; i < rows; i += 1) {
+    matrix[i] = [];
+    for (let j = 0; j < cols; j += 1) {
+    matrix[i][j] = null;
     }
   }
 };
